@@ -1,0 +1,86 @@
+# -------------------------------------------------------
+# Node & Backend
+# -------------------------------------------------------
+
+# Node modules
+node_modules/
+
+# Environment variables
+.env
+.env.local
+.env.production
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Runtime files
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+
+# Build / Dist files
+dist/
+build/
+
+# Temporary folders
+.tmp/
+temp/
+
+# CSV Data folder (DO NOT track your raw data)
+data/
+*.csv
+
+# Cache files
+.cache/
+.parcel-cache/
+.vite/
+vite.config.ts.timestamp*
+
+# -------------------------------------------------------
+# Frontend (React + Vite + TypeScript)
+# -------------------------------------------------------
+
+# Node modules again (inside frontend folder)
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+
+# Local development config
+frontend/.env
+frontend/.env.local
+
+# -------------------------------------------------------
+# System Files
+# -------------------------------------------------------
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+*~
+
+# Vim swap files
+*.swp
+*.swo
+
+# JetBrains IDE
+.idea/
+
+# VSCode settings
+.vscode/
