@@ -6,6 +6,113 @@ Includes a **CSV → MongoDB importer** with automatic normalization and batch i
 
 ---
 
+## Backend – Retail Sales Management System
+
+## 1. Overview
+
+This backend processes retail sales CSV data and exposes a single `/sales` API supporting dynamic search, filtering, sorting, and pagination.
+Data is normalized, stored in memory, and optimized for fast query operations.
+The backend is built using production-grade architecture with services, controllers, middleware, and typed responses.
+
+---
+
+## 2. Tech Stack
+
+* Node.js
+* Express.js
+* csv-parser (stream-based CSV ingestion)
+* TypeScript (optional)
+* Custom service-layer architecture
+* ApiError / ApiResponse pattern
+* asyncHandler wrapper
+* CORS enabled
+
+---
+
+## 3. Search Implementation Summary
+
+* Search is applied on raw dataset before filters/sorting.
+* Supports case-insensitive partial search on:
+
+  * **Customer Name**
+  * **Phone Number**
+* Implemented using a dedicated `search.service.js` (pure function).
+* Integrated in pipeline: `search → filter → sort → pagination`.
+
+---
+
+## 4. Filter Implementation Summary
+
+Filters operate independently and can be combined.
+Supported filters include:
+
+* **Gender**
+* **Customer Region**
+* **Age range (ageMin–ageMax)**
+* **Product Category**
+* **Tags (multi-value)**
+* **Payment Method**
+* **Date range (startDate–endDate)**
+
+Filtering is handled by **filter.service.js**, which transforms the in-memory dataset based on query parameters.
+
+---
+
+## 5. Sorting Implementation Summary
+
+Sorting is applied after search and filters.
+Supported fields:
+
+* **date** (newest first)
+* **quantity**
+* **customerName** (A–Z)
+
+A mapping strategy is used in `sort.service.js` to avoid conditional blocks and make future extensions easy.
+
+---
+
+## 6. Pagination Implementation Summary
+
+Pagination is performed last, after search/filter/sort are complete.
+
+* Default: `page=1`, `limit=10`
+* Response returns:
+
+  * `currentPage`
+  * `totalPages`
+  * `totalResults`
+  * Paginated `data[]`
+
+Implemented via `pagination.service.js`.
+
+---
+
+## 7. Setup Instructions
+
+### Install dependencies
+
+```sh
+cd backend
+npm install
+```
+
+### Add environment variables
+
+Create `.env`:
+
+```env
+PORT=3000
+CSV_PATH=./data/sales.csv
+```
+
+### Start server
+
+```sh
+npm start
+```
+
+---
+
 ## 🚀 1. Setup
 
 ### Clone repository
